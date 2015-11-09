@@ -167,7 +167,7 @@ void SchedulingVisualizer::generateTreeWidget()
   QDir dir(_directory);
 
   QStringList filters;
-  filters << "*.txt";
+  filters << "*.pst";
 
   qDebug() << dir.currentPath();
   qDebug() << QDir::currentPath();

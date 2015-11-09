@@ -1,6 +1,8 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+#include "schedulingvisualizer.hpp"
+
 #include <QMainWindow>
 
 namespace Ui {
@@ -11,12 +13,21 @@ class MainWindow : public QMainWindow
 {
   Q_OBJECT
 
+  Ui::MainWindow *ui;
+  SchedulingVisualizer * sv;
+  QString filename;
+
+  void updateTitle();
+
 public:
   explicit MainWindow(QString folder = 0, QWidget *parent = 0);
   ~MainWindow();
 
-private:
-  Ui::MainWindow *ui;
+private slots:
+  void on_actionQuit_triggered();
+  void on_actionOpen_triggered();
+  void on_actionOpen_Folder_triggered();
+  void on_actionRefresh_Folder_triggered();
 };
 
 #endif // MAINWINDOW_H
