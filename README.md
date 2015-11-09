@@ -60,3 +60,5 @@ The file format used by `PlotSched` is the following:
 ```
 
 The tool recognizes any row as an event.
+
+Examples of `.pst` files can be found in `examples/` folder.
