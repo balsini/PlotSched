@@ -14,11 +14,13 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp\
         schedulingvisualizer.cpp \
-    customtoolbar.cpp
+    customtoolbar.cpp \
+    tracefilelister.cpp
 
 HEADERS  += mainwindow.h\
         schedulingvisualizer.hpp \
-    customtoolbar.h
+    customtoolbar.h \
+    tracefilelister.h
 
 FORMS    += mainwindow.ui
 

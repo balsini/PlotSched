@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "customtoolbar.h"
+#include "tracefilelister.h"
 
 #include <QToolBar>
 #include <QToolButton>
@@ -24,6 +25,7 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
   updateTitle();
 
   populate_toolbar();
+  populate_dock();
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -31,6 +33,13 @@ MainWindow::MainWindow(QWidget *parent) :
   ui(new Ui::MainWindow)
 {
   populate_toolbar();
+  populate_dock();
+}
+
+void MainWindow::populate_dock()
+{
+  TraceFileLister * tfl = new TraceFileLister(this);
+  this->addDockWidget(Qt::LeftDockWidgetArea, tfl, Qt::Vertical);
 }
 
 void MainWindow::populate_toolbar()

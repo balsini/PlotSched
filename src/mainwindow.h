@@ -19,6 +19,7 @@ class MainWindow : public QMainWindow
 
   void updateTitle();
   void populate_toolbar();
+  void populate_dock();
 
 public:
   MainWindow(QString folder, QWidget *parent = 0);
