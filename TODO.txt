@@ -1,0 +1,10 @@
+SUGGESTIONS
+
+Events can be:
+ - instantaneous
+ - as interval
+
+It must be possible to switch the view of the plot. For example, in case of taskset schedule on multiprocessor, there can be:
+ - a row for every CPU, showing the tasks scheduled
+ - a row for every task, showing on which CPU it's scheduled
+ 
