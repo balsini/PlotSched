@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include "customtoolbar.h"
 
 #include <QToolBar>
 #include <QToolButton>
@@ -19,19 +20,27 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
     this->ui->mainLayout->addWidget(sv);
   }
 
+  filename = folder;
+  updateTitle();
 
-  QToolButton * buttonOpen = new QToolButton(this);
-  buttonOpen->setIcon(QIcon::fromTheme("document-open"));
-  this->ui->mainToolBar->addWidget(buttonOpen);
+  populate_toolbar();
+}
 
-  connect(buttonOpen, SIGNAL(clicked()), this, SLOT(on_actionOpen_Folder_triggered()));
+MainWindow::MainWindow(QWidget *parent) :
+  QMainWindow(parent),
+  ui(new Ui::MainWindow)
+{
+  populate_toolbar();
+}
 
-  QToolButton * buttonRefresh = new QToolButton(this);
-  buttonRefresh->setIcon(QIcon::fromTheme("view-refresh"));
-  this->ui->mainToolBar->addWidget(buttonRefresh);
+void MainWindow::populate_toolbar()
+{
+  CustomToolBar * ct = new CustomToolBar(this);
 
-  connect(buttonRefresh, SIGNAL(clicked()), this, SLOT(on_actionRefresh_Folder_triggered()));
+  this->addToolBar(ct);
 
+  connect(ct, SIGNAL(openButtonClicked()), this, SLOT(on_actionOpen_Folder_triggered()));
+  connect(ct, SIGNAL(refreshButtonClicked()), this, SLOT(on_actionRefresh_Folder_triggered()));
   /*
 
   this->ui->mainToolBar->addSeparator();

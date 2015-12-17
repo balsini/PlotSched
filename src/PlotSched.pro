@@ -13,10 +13,12 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp\
-        schedulingvisualizer.cpp
+        schedulingvisualizer.cpp \
+    customtoolbar.cpp
 
 HEADERS  += mainwindow.h\
-        schedulingvisualizer.hpp
+        schedulingvisualizer.hpp \
+    customtoolbar.h
 
 FORMS    += mainwindow.ui
 

@@ -5,14 +5,14 @@
 
 int main(int argc, char *argv[])
 {
+  QApplication a(argc, argv);
+  MainWindow * w;
   if (argc == 2) {
-    QApplication a(argc, argv);
-
-    MainWindow w(argv[1]);
-    w.show();
-
-    return a.exec();
+    w = new MainWindow(argv[1]);
   } else {
-    qDebug() << "Please, set the path of the plots";
+    w = new MainWindow();
   }
+  w->show();
+
+  return a.exec();
 }

@@ -18,9 +18,11 @@ class MainWindow : public QMainWindow
   QString filename;
 
   void updateTitle();
+  void populate_toolbar();
 
 public:
-  explicit MainWindow(QString folder = 0, QWidget *parent = 0);
+  MainWindow(QString folder, QWidget *parent = 0);
+  MainWindow(QWidget *parent = 0);
   ~MainWindow();
 
 private slots:
