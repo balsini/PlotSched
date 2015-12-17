@@ -23,7 +23,7 @@ CustomToolBar::CustomToolBar(QWidget * parent) :
 
 
   QToolButton * buttonZoomIn = new QToolButton(this);
-  buttonZoomIn->setIcon(QIcon::fromTheme("zoom-out"));
+  buttonZoomIn->setIcon(QIcon::fromTheme("zoom-in"));
   this->addWidget(buttonZoomIn);
 
   connect(buttonZoomIn, SIGNAL(clicked()), this, SLOT(buttonZoomInSlot()));
