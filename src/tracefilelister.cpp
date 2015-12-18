@@ -60,6 +60,7 @@ void TraceFileLister::update(QString path)
     QTreeWidgetItem * j = new QTreeWidgetItem(tree);
     j->setText(0, fi->absoluteFilePath());
     addFolderToTree(j, path);
+    j->setExpanded(true);
   }
 
   delete fi;
