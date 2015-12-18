@@ -2,6 +2,7 @@
 #define MAINWINDOW_H
 
 #include "schedulingvisualizer.hpp"
+#include "tracefilelister.h"
 
 #include <QMainWindow>
 
@@ -16,6 +17,7 @@ class MainWindow : public QMainWindow
   Ui::MainWindow *ui;
   SchedulingVisualizer * sv;
   QString filename;
+  TraceFileLister * tfl;
 
   void updateTitle();
   void populate_toolbar();
@@ -26,11 +28,17 @@ public:
   MainWindow(QWidget *parent = 0);
   ~MainWindow();
 
+public slots:
+  void newTraceChosen(QString);
+
 private slots:
   void on_actionQuit_triggered();
   void on_actionOpen_triggered();
   void on_actionOpen_Folder_triggered();
   void on_actionRefresh_Folder_triggered();
+
+signals:
+  void newFolderChosen(QString);
 };
 
 #endif // MAINWINDOW_H

@@ -1,12 +1,13 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "customtoolbar.h"
-#include "tracefilelister.h"
 
 #include <QToolBar>
 #include <QToolButton>
 #include <QIcon>
 #include <QFileDialog>
+
+#include <QDebug>
 
 MainWindow::MainWindow(QString folder, QWidget *parent) :
   QMainWindow(parent),
@@ -38,8 +39,11 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::populate_dock()
 {
-  TraceFileLister * tfl = new TraceFileLister(this);
+  tfl = new TraceFileLister(this);
   this->addDockWidget(Qt::LeftDockWidgetArea, tfl, Qt::Vertical);
+
+  connect(this, SIGNAL(newFolderChosen(QString)), tfl, SLOT(update(QString)));
+  connect(tfl, SIGNAL(traceChosen(QString)), this, SLOT(newTraceChosen(QString)));
 }
 
 void MainWindow::populate_toolbar()
@@ -115,6 +119,8 @@ void MainWindow::on_actionOpen_Folder_triggered()
 
   sv = new SchedulingVisualizer(tmpfilename, this);
   this->ui->mainLayout->addWidget(sv);
+
+  emit newFolderChosen(filename);
 }
 
 
@@ -125,4 +131,10 @@ void MainWindow::on_actionRefresh_Folder_triggered()
 
   sv = new SchedulingVisualizer(filename, this);
   this->ui->mainLayout->addWidget(sv);
+}
+
+
+void MainWindow::newTraceChosen(QString path)
+{
+  qDebug() << "Chosen new trace : " << path;
 }
