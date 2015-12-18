@@ -3,6 +3,7 @@
 
 #include "schedulingvisualizer.hpp"
 #include "tracefilelister.h"
+#include "eventsparser.h"
 
 #include <QMainWindow>
 
@@ -18,6 +19,7 @@ class MainWindow : public QMainWindow
   SchedulingVisualizer * sv;
   QString filename;
   TraceFileLister * tfl;
+  EventsParser * ep;
 
   void updateTitle();
   void populate_toolbar();

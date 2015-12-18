@@ -15,12 +15,14 @@ SOURCES += main.cpp\
         mainwindow.cpp\
         schedulingvisualizer.cpp \
     customtoolbar.cpp \
-    tracefilelister.cpp
+    tracefilelister.cpp \
+    eventsparser.cpp
 
 HEADERS  += mainwindow.h\
         schedulingvisualizer.hpp \
     customtoolbar.h \
-    tracefilelister.h
+    tracefilelister.h \
+    eventsparser.h
 
 FORMS    += mainwindow.ui
 

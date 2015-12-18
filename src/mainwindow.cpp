@@ -27,6 +27,8 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
 
   populate_toolbar();
   populate_dock();
+
+  ep = new EventsParser;
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -71,6 +73,7 @@ void MainWindow::populate_toolbar()
 
 MainWindow::~MainWindow()
 {
+  delete ep;
   delete ui;
 }
 
@@ -141,6 +144,10 @@ void MainWindow::on_actionRefresh_Folder_triggered()
 void MainWindow::newTraceChosen(QString path)
 {
   qDebug() << "Chosen new trace : " << path;
+
+  QFileInfo f(path);
+  if (f.isFile())
+    ep->parseFile(path);
 }
 
 
