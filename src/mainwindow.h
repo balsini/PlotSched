@@ -37,6 +37,8 @@ private slots:
   void on_actionOpen_Folder_triggered();
   void on_actionRefresh_Folder_triggered();
 
+  void on_actionTraces_Files_triggered();
+
 signals:
   void newFolderChosen(QString);
 };

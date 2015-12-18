@@ -74,6 +74,7 @@ MainWindow::~MainWindow()
   delete ui;
 }
 
+
 void MainWindow::updateTitle()
 {
   QString t = "PlotSched";
@@ -83,6 +84,7 @@ void MainWindow::updateTitle()
   }
   this->setWindowTitle(t);
 }
+
 
 void MainWindow::on_actionOpen_triggered()
 {
@@ -97,10 +99,12 @@ void MainWindow::on_actionOpen_triggered()
   updateTitle();
 }
 
+
 void MainWindow::on_actionQuit_triggered()
 {
   close();
 }
+
 
 void MainWindow::on_actionOpen_Folder_triggered()
 {
@@ -137,4 +141,10 @@ void MainWindow::on_actionRefresh_Folder_triggered()
 void MainWindow::newTraceChosen(QString path)
 {
   qDebug() << "Chosen new trace : " << path;
+}
+
+
+void MainWindow::on_actionTraces_Files_triggered()
+{
+  tfl->setVisible(!tfl->isVisible());
 }

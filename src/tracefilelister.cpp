@@ -30,20 +30,25 @@ void TraceFileLister::addFolderToTree(QTreeWidgetItem * parent, QString dir)
 {
   QDir * root = new QDir(dir);
 
-  QStringList l = root->entryList();
-  QTreeWidgetItem * j;
-  for (auto o : l) {
-    if (o != "." && o != "..") {
-      j = new QTreeWidgetItem(parent);
-      j->setText(0, o);
+  QFileInfoList l = root->entryInfoList(QDir::NoDotAndDotDot | QDir::Dirs);
 
-      QString newDir = root->absoluteFilePath(o);
-      QFileInfo * fi = new QFileInfo(newDir);
-      if (fi->isDir()) {
-        addFolderToTree(j, newDir);
-      }
-      delete fi;
+  QStringList filters;
+  filters << "*.pst";
+  root->setNameFilters(filters);
+
+  l.append(root->entryInfoList(QDir::Files));
+
+  QTreeWidgetItem * j;
+  for (QFileInfo o : l) {
+    j = new QTreeWidgetItem(parent);
+    j->setText(0, o.fileName());
+
+    QString newDir = root->absoluteFilePath(o.fileName());
+    QFileInfo * fi = new QFileInfo(newDir);
+    if (fi->isDir()) {
+      addFolderToTree(j, newDir);
     }
+    delete fi;
   }
 
   delete root;

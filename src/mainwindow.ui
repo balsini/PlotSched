@@ -41,7 +41,14 @@
     <addaction name="separator"/>
     <addaction name="actionQuit"/>
    </widget>
+   <widget class="QMenu" name="menuView">
+    <property name="title">
+     <string>&amp;View</string>
+    </property>
+    <addaction name="actionTraces_Files"/>
+   </widget>
    <addaction name="menuFile"/>
+   <addaction name="menuView"/>
   </widget>
   <widget class="QStatusBar" name="statusBar"/>
   <action name="actionQuit">
@@ -62,6 +69,11 @@
   <action name="actionRefresh_Folder">
    <property name="text">
     <string>&amp;Refresh Folder</string>
+   </property>
+  </action>
+  <action name="actionTraces_Files">
+   <property name="text">
+    <string>Traces Files</string>
    </property>
   </action>
  </widget>
