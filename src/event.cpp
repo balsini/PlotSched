@@ -30,15 +30,20 @@ bool correctLine(QByteArray line)
   return true;
 }
 
-Event::Event(QString event)
+Event::Event(QByteArray event)
 {
   correct = false;
+
+  if (correctLine(event)) {
+    parseLine(event);
+    correct = true;
+  }
 }
 
 Event::Event(const Event &o) : QObject()
 {
   time_start = o.time_start;
-  duration = o.duration;
+  time_end = o.time_end;
   name = o.name;
   event = o.event;
 
@@ -48,4 +53,10 @@ Event::Event(const Event &o) : QObject()
 bool Event::isCorrect()
 {
   return correct;
+}
+
+
+bool Event::isRange()
+{
+  return range;
 }
