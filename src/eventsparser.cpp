@@ -1,10 +1,11 @@
 #include "eventsparser.h"
+#include "event.h"
 
 #include <QDebug>
 
 EventsParser::EventsParser()
 {
-  EventsParserWorker *worker = new EventsParserWorker;
+  EventsParserWorker * worker = new EventsParserWorker;
 
   worker->moveToThread(&workerThread);
   connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
@@ -29,35 +30,6 @@ void EventsParser::handleResults(const QString &)
 {}
 
 
-plot_entity parseLine(QByteArray line)
-{
-  // TODO
-
-  plot_entity e;
-  QTextStream ss(line);
-
-  ss >> e.time_start;
-  ss >> e.name;
-  ss >> e.event;
-
-  qDebug() << "Read from device : " << e.time_start;
-  qDebug() << "Read from device : " << e.name;
-  qDebug() << "Read from device : " << e.event;
-
-  qDebug() << "";
-
-  return e;
-}
-
-bool correctLine(QByteArray line)
-{
-  // TODO
-
-  if (line.size() < 2)
-    return false;
-  return true;
-}
-
 void EventsParserWorker::doWork(QString path)
 {
   QString result;
@@ -65,9 +37,9 @@ void EventsParserWorker::doWork(QString path)
 
   if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
     while (!f.atEnd()) {
-      QByteArray line = f.readLine();
-      if (correctLine(line))
-        parseLine(line);
+      Event e(f.readLine());
+      if (e.isCorrect())
+        emit eventGenerated(e);
     }
   }
 

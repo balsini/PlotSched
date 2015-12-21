@@ -1,23 +1,13 @@
 #ifndef EVENTSPARSER_H
 #define EVENTSPARSER_H
 
+#include "event.h"
+
 #include <QObject>
 #include <QFile>
 #include <QThread>
 
 #include <QDebug>
-
-enum event {
-  DEADLINE,
-  ACTIVATION
-};
-
-typedef struct plot_entity_ {
-  unsigned long time_start;
-  unsigned long duration;
-  QString name;
-  QString event;
-} plot_entity;
 
 class EventsParserWorker : public QObject
 {
@@ -28,6 +18,7 @@ public slots:
 
 signals:
   void resultReady(const QString &result);
+  void eventGenerated(Event);
 };
 
 class EventsParser : public QObject
