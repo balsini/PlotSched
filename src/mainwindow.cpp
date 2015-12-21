@@ -35,8 +35,14 @@ MainWindow::MainWindow(QWidget *parent) :
   QMainWindow(parent),
   ui(new Ui::MainWindow)
 {
+  ui->setupUi(this);
+
+  sv = 0;
+
   populate_toolbar();
   populate_dock();
+
+  ep = new EventsParser;
 }
 
 void MainWindow::populate_dock()
@@ -148,6 +154,12 @@ void MainWindow::newTraceChosen(QString path)
   QFileInfo f(path);
   if (f.isFile())
     ep->parseFile(path);
+
+  if (sv)
+    delete sv;
+
+  sv = new SchedulingVisualizer(path, this);
+  this->ui->mainLayout->addWidget(sv);
 }
 
 
