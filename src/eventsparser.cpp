@@ -1,5 +1,4 @@
 #include "eventsparser.h"
-#include "event.h"
 
 #include <QDebug>
 
@@ -38,8 +37,9 @@ void EventsParserWorker::doWork(QString path)
   if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
     while (!f.atEnd()) {
       Event e(f.readLine());
-      if (e.isCorrect())
-        emit eventGenerated(e);
+      if (e.isCorrect()) {
+        //emit eventGenerated(e);
+      }
     }
   }
 

@@ -25,6 +25,7 @@ class Event : public QObject
 
 public:
   Event(QString event);
+  Event(const Event &o);
   bool isCorrect();
 };
 

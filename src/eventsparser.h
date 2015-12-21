@@ -18,7 +18,7 @@ public slots:
 
 signals:
   void resultReady(const QString &result);
-  void eventGenerated(Event);
+  void eventGenerated(Event e);
 };
 
 class EventsParser : public QObject

@@ -1,5 +1,4 @@
 #include "tracefilelister.h"
-#include "ui_tracefilelister.h"
 
 #include <QVBoxLayout>
 #include <QLabel>
