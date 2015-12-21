@@ -17,16 +17,18 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
 
   sv = 0;
 
+  populate_toolbar();
+  populate_dock();
+
   if (folder != 0) {
     sv = new SchedulingVisualizer(folder, this);
     this->ui->mainLayout->addWidget(sv);
+
+    filename = folder;
+    updateTitle();
+
+    emit newFolderChosen(filename);
   }
-
-  filename = folder;
-  updateTitle();
-
-  populate_toolbar();
-  populate_dock();
 
   ep = new EventsParser;
 }
