@@ -1,10 +1,14 @@
 #ifndef EVENTVIEW_H
 #define EVENTVIEW_H
 
-class EventView
+#include <QGraphicsItemGroup>
+
+class EventView : public QGraphicsItemGroup
 {
 public:
-  EventView();
+  explicit EventView(QGraphicsItem * parent = 0);
+
+  void setArrowUp(qreal at, qreal height);
 };
 
 #endif // EVENTVIEW_H

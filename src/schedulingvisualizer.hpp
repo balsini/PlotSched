@@ -7,6 +7,8 @@
 #include <QHBoxLayout>
 #include <QTreeWidget>
 
+#include <QGraphicsItem>
+
 //#include "experimentsetup.hpp"
 
 class SchedulingVisualizer : public QDockWidget
@@ -28,6 +30,12 @@ class SchedulingVisualizer : public QDockWidget
   void populateSceneWithFile(const QString &fileName, QGraphicsScene &scene);
   void generateTreeWidget();
   void generateContent();
+
+public slots:
+  void newItemGenerated(QGraphicsItem * i)
+  {
+    scene->addItem(i);
+  }
 
 private slots:
   void on_ExperimentChanged(QTreeWidgetItem*,int);

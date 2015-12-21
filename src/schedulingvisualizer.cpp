@@ -161,8 +161,8 @@ void SchedulingVisualizer::generateTreeWidget()
 {
   treewidget.setColumnCount(1);
   treewidget.setHeaderLabel("View");
-  treewidget.setMaximumWidth(400);
-  treewidget.setMinimumWidth(400);
+  treewidget.setMaximumWidth(150);
+  treewidget.setMinimumWidth(150);
 
   QDir dir(_directory);
 
