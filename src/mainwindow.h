@@ -4,6 +4,7 @@
 #include "schedulingvisualizer.hpp"
 #include "tracefilelister.h"
 #include "eventsparser.h"
+#include "plot.h"
 
 #include <QMainWindow>
 
@@ -20,6 +21,7 @@ class MainWindow : public QMainWindow
   QString filename;
   TraceFileLister * tfl;
   EventsParser * ep;
+  Plot * plot;
 
   void updateTitle();
   void populate_toolbar();

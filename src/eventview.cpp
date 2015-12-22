@@ -5,6 +5,7 @@
 EventView::EventView(QGraphicsItem * parent) :
   QGraphicsItemGroup(parent)
 {
+  setArrowUp(50, 50);
 }
 
 void EventView::setArrowUp(qreal at, qreal height)

@@ -1,4 +1,5 @@
 #include "eventsparser.h"
+#include "eventview.h"
 
 #include <QDebug>
 
@@ -10,6 +11,7 @@ EventsParser::EventsParser()
   connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
   connect(this, &EventsParser::operate, worker, &EventsParserWorker::doWork);
   connect(worker, &EventsParserWorker::resultReady, this, &EventsParser::handleResults);
+  connect(worker, SIGNAL(eventGeneratedByWorker(QGraphicsItem *)), this, SLOT(eventGeneratedByWorker(QGraphicsItem *)));
 
   workerThread.start();
 }
@@ -28,6 +30,10 @@ EventsParser::~EventsParser()
 void EventsParser::handleResults(const QString &)
 {}
 
+void EventsParser::eventGeneratedByWorker(QGraphicsItem * e)
+{
+  emit eventGenerated(e);
+}
 
 void EventsParserWorker::doWork(QString path)
 {
@@ -38,7 +44,8 @@ void EventsParserWorker::doWork(QString path)
     while (!f.atEnd()) {
       Event e(f.readLine());
       if (e.isCorrect()) {
-        //emit eventGenerated(e);
+        EventView * ev = new EventView();
+        emit eventGeneratedByWorker(ev);
       }
     }
   }

@@ -17,6 +17,9 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
 
   sv = 0;
 
+  plot = new Plot(this);
+  this->setCentralWidget(plot);
+
   populate_toolbar();
   populate_dock();
 
@@ -31,6 +34,7 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
   }
 
   ep = new EventsParser;
+  connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -41,10 +45,14 @@ MainWindow::MainWindow(QWidget *parent) :
 
   sv = 0;
 
+  plot = new Plot(this);
+  this->setCentralWidget(plot);
+
   populate_toolbar();
   populate_dock();
 
   ep = new EventsParser;
+  connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
 }
 
 void MainWindow::populate_dock()
@@ -154,14 +162,18 @@ void MainWindow::newTraceChosen(QString path)
   qDebug() << "Chosen new trace : " << path;
 
   QFileInfo f(path);
-  if (f.isFile())
+  if (f.isFile()) {
+    plot->clear();
     ep->parseFile(path);
+  }
 
+/*
   if (sv)
     delete sv;
 
   sv = new SchedulingVisualizer(path, this);
   this->ui->mainLayout->addWidget(sv);
+  */
 }
 
 

@@ -18,7 +18,8 @@ SOURCES += main.cpp\
     tracefilelister.cpp \
     eventsparser.cpp \
     event.cpp \
-    eventview.cpp
+    eventview.cpp \
+    plot.cpp
 
 HEADERS  += mainwindow.h\
         schedulingvisualizer.hpp \
@@ -26,7 +27,8 @@ HEADERS  += mainwindow.h\
     tracefilelister.h \
     eventsparser.h \
     event.h \
-    eventview.h
+    eventview.h \
+    plot.h
 
 FORMS    += mainwindow.ui
 

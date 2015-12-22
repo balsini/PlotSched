@@ -6,6 +6,7 @@
 #include <QObject>
 #include <QFile>
 #include <QThread>
+#include <QGraphicsItem>
 
 #include <QDebug>
 
@@ -18,7 +19,7 @@ public slots:
 
 signals:
   void resultReady(const QString &result);
-  void eventGenerated(Event e);
+  void eventGeneratedByWorker(QGraphicsItem *);
 };
 
 class EventsParser : public QObject
@@ -33,9 +34,11 @@ public:
 
 public slots:
   void handleResults(const QString &);
+  void eventGeneratedByWorker(QGraphicsItem *);
 
 signals:
   void operate(QString);
+  void eventGenerated(QGraphicsItem *);
 };
 
 #endif // EVENTSPARSER_H

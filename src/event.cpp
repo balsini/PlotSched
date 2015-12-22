@@ -50,6 +50,7 @@ Event::Event(const Event &o) : QObject()
   correct = o.correct;
 }
 
+
 bool Event::isCorrect()
 {
   return correct;
