@@ -7,10 +7,12 @@
 
 class EventView : public QGraphicsItemGroup
 {
+  qreal height;
 
 public:
   explicit EventView(QGraphicsItem * parent = 0);
-  void setArrowUp(qreal at, qreal height);
+  void drawArrowUp(qreal time, qreal row);
+  void drawCircle(qreal x, qreal y, qreal radius);
 };
 
 #endif // EVENTVIEW_H
