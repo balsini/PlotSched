@@ -40,9 +40,12 @@ void EventsParserWorker::doWork(QString path)
   QString result;
   QFile f(path);
 
+  clearEventMap();
+
   if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
     while (!f.atEnd()) {
-      Event e(f.readLine());
+      Event e;
+      e.parse(f.readLine());
       if (e.isCorrect()) {
         EventView * ev = new EventView(e);
         emit eventGeneratedByWorker(ev);

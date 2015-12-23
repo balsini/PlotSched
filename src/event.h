@@ -5,33 +5,40 @@
 #include <QString>
 #include <QByteArray>
 
+enum event_kind {
+  ACTIVATION,
+  DEAD,
+  RUNNING,
+  DEADLINE
+};
+
 class Event : public QObject
 {
   Q_OBJECT
 
-  enum event {
-    ARROW_UP,
-    ARROW_DOWN,
-    ARROW_CUSTOM,
-    ACTIVATION
-  };
-
   unsigned long time_start;
-  unsigned long time_end;
-  QString name;
+  unsigned long duration;
+  QString caller;
   QString event;
+  event_kind kind;
 
   bool correct;
+  bool pending;
   bool range;
 
   void parseLine(QByteArray b);
 
 public:
-  Event(QByteArray event);
+  Event();
   Event(const Event &o);
+  void parse(QByteArray line);
   bool isCorrect();
+  bool isPending();
   bool isRange();
-  unsigned long getStart() {return time_start;}
+  unsigned long getStart();
+  unsigned long getDuration();
+  QString getCaller();
+  event_kind getKind();
 };
 
 
