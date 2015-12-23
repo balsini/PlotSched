@@ -31,6 +31,7 @@ public:
   Event(const Event &o);
   bool isCorrect();
   bool isRange();
+  unsigned long getStart() {return time_start;}
 };
 
 
