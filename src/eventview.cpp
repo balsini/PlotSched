@@ -40,19 +40,21 @@ void EventView::setEvent(Event e)
     case ACTIVATION:
       drawArrowUp();
       break;
+    case DEAD:
+      drawCircle();
+      break;
     default: return;
   }
 
   this->moveBy(e.getStart(), vertical_offset * map[e.getCaller()]);
 }
 
-void EventView::drawCircle(qreal x, qreal y, qreal radius)
+void EventView::drawCircle()
 {
-
-  QGraphicsEllipseItem * body = new QGraphicsEllipseItem(x - radius,
-                                                         y - radius,
-                                                         radius * 2,
-                                                         radius * 2,
+  QGraphicsEllipseItem * body = new QGraphicsEllipseItem(-4,
+                                                         -4,
+                                                         4 * 2,
+                                                         4 * 2,
                                                          this);
   this->addToGroup(body);
 }

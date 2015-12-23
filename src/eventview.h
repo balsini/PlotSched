@@ -19,7 +19,7 @@ public:
 
   void drawArrowUp();
   void drawRect(qreal duration);
-  void drawCircle(qreal x, qreal y, qreal radius);
+  void drawCircle();
 };
 
 void clearEventMap();

@@ -15,6 +15,9 @@ class Plot : public QWidget
   QGraphicsScene * scene;
   QGraphicsView * view;
 
+protected:
+  virtual void wheelEvent(QWheelEvent* event);
+
 public:
   explicit Plot(QWidget *parent = 0);
   void clear();
