@@ -35,6 +35,7 @@ void EventView::setEvent(Event e)
 
   switch (e.getKind()) {
     case RUNNING :
+      drawRect(e.getDuration());
       break;
     case ACTIVATION:
       drawArrowUp();

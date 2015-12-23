@@ -40,6 +40,7 @@ void Event::parseLine(QByteArray line)
       duration = time_start - pending_events[caller].find(kind).value()->getStart();
       this->time_start = pending_events[caller].find(kind).value()->getStart();
       correct = true;
+
       Event * ev = pending_events[caller].find(kind).value();
       pending_events[caller].remove(kind);
       delete ev;
