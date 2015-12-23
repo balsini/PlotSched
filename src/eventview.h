@@ -9,8 +9,11 @@ class EventView : public QGraphicsItemGroup
 {
   qreal height;
 
+  void setEvent(Event e);
+
 public:
-  explicit EventView(QGraphicsItem * parent = 0);
+  explicit EventView(Event e, QGraphicsItem * parent = 0);
+
   void drawArrowUp(qreal time, qreal row);
   void drawCircle(qreal x, qreal y, qreal radius);
 };

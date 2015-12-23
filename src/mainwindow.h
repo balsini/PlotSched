@@ -17,7 +17,7 @@ class MainWindow : public QMainWindow
   Q_OBJECT
 
   Ui::MainWindow *ui;
-  SchedulingVisualizer * sv;
+  //SchedulingVisualizer * sv;
   QString filename;
   TraceFileLister * tfl;
   EventsParser * ep;

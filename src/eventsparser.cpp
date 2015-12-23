@@ -44,7 +44,7 @@ void EventsParserWorker::doWork(QString path)
     while (!f.atEnd()) {
       Event e(f.readLine());
       if (e.isCorrect()) {
-        EventView * ev = new EventView();
+        EventView * ev = new EventView(e);
         emit eventGeneratedByWorker(ev);
       }
     }

@@ -15,7 +15,7 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
 {
   ui->setupUi(this);
 
-  sv = 0;
+  //sv = 0;
 
   plot = new Plot(this);
   this->setCentralWidget(plot);
@@ -24,8 +24,8 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
   populate_dock();
 
   if (folder != 0) {
-    sv = new SchedulingVisualizer(folder, this);
-    this->ui->mainLayout->addWidget(sv);
+    //sv = new SchedulingVisualizer(folder, this);
+    //this->ui->mainLayout->addWidget(sv);
 
     filename = folder;
     updateTitle();
@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
 {
   ui->setupUi(this);
 
-  sv = 0;
+  //sv = 0;
 
   plot = new Plot(this);
   this->setCentralWidget(plot);
@@ -137,11 +137,11 @@ void MainWindow::on_actionOpen_Folder_triggered()
   filename = tmpfilename;
   updateTitle();
 
-  if (sv)
-    delete sv;
+  //if (sv)
+  //  delete sv;
 
-  sv = new SchedulingVisualizer(tmpfilename, this);
-  this->ui->mainLayout->addWidget(sv);
+  //sv = new SchedulingVisualizer(tmpfilename, this);
+  //this->ui->mainLayout->addWidget(sv);
 
   emit newFolderChosen(filename);
 }
@@ -149,17 +149,17 @@ void MainWindow::on_actionOpen_Folder_triggered()
 
 void MainWindow::on_actionRefresh_Folder_triggered()
 {
-  if (sv)
-    delete sv;
+  //if (sv)
+  //  delete sv;
 
-  sv = new SchedulingVisualizer(filename, this);
-  this->ui->mainLayout->addWidget(sv);
+  //sv = new SchedulingVisualizer(filename, this);
+  //this->ui->mainLayout->addWidget(sv);
 }
 
 
 void MainWindow::newTraceChosen(QString path)
 {
-  qDebug() << "Chosen new trace : " << path;
+  //qDebug() << "Chosen new trace : " << path;
 
   QFileInfo f(path);
   if (f.isFile()) {

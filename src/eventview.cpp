@@ -2,14 +2,19 @@
 
 #include <QGraphicsLineItem>
 
-EventView::EventView(QGraphicsItem * parent) :
+EventView::EventView(Event e, QGraphicsItem * parent) :
   QGraphicsItemGroup(parent)
 {
   height = 20;
 
-  drawCircle(50, 50, 4);
-  drawCircle(0, 0, 4);
-  drawArrowUp(50, 50);
+  setEvent(e);
+}
+
+void EventView::setEvent(Event e)
+{
+    //drawCircle(50, 50, 4);
+    //drawCircle(0, 0, 4);
+    drawArrowUp(e.getStart(), 50);
 }
 
 void EventView::drawCircle(qreal x, qreal y, qreal radius)
