@@ -65,9 +65,9 @@ Where:
 * `CPU` is the CPU on which the entity was running;
 * `event name` is the event identifier;
 * `event status` is the kind of event and can be:
-** `I` for instantaneous events (that start and finish at the same time);
-** `S` defining that an event just started;
-** `E` defining that an event just finished;
+  * `I` for instantaneous events (that start and finish at the same time);
+  * `S` defining that an event just started;
+  * `E` defining that an event just finished;
 
 
 The tool recognizes any row as an event.
