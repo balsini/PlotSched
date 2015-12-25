@@ -18,6 +18,7 @@ class Event : public QObject
 
   unsigned long time_start;
   unsigned long duration;
+  unsigned long cpu;
   QString caller;
   QString event;
   event_kind kind;

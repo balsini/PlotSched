@@ -18,6 +18,7 @@ void Event::parseLine(QByteArray line)
 
   ss >> time_start;
   ss >> caller;
+  ss >> cpu;
   ss >> event;
   ss >> status;
 
@@ -53,6 +54,7 @@ void Event::parseLine(QByteArray line)
 
   qDebug() << "Read from device : " << time_start;
   qDebug() << "Read from device : " << caller;
+  qDebug() << "Read from device : " << cpu;
   qDebug() << "Read from device : " << event;
   qDebug() << "Read from device : " << status;
 

@@ -56,8 +56,19 @@ The file extension is `.pst` (Plot Sched Trace).
 The file format used by `PlotSched` is the following:
 
 ```
-<time> <task> <event name>
+<time> <entity> <CPU> <event name> <event status>
 ```
+
+Where:
+* `time` is the time at which the event is generated;
+* `entity` is the subject that generated the event;
+* `CPU` is the CPU on which the entity was running;
+* `event name` is the event identifier;
+* `event status` is the kind of event and can be:
+** `I` for instantaneous events (that start and finish at the same time);
+** `S` defining that an event just started;
+** `E` defining that an event just finished;
+
 
 The tool recognizes any row as an event.
 
