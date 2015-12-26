@@ -87,6 +87,7 @@ void Event::parse(QByteArray line)
 
 Event::Event(const Event &o) : QObject()
 {
+  row = o.row;
   time_start = o.time_start;
   duration = o.duration;
   caller = o.caller;
@@ -94,6 +95,21 @@ Event::Event(const Event &o) : QObject()
   kind = o.kind;
   correct = o.correct;
   pending = o.pending;
+}
+
+
+Event& Event::operator=(const Event &o)
+{
+  row = o.row;
+  time_start = o.time_start;
+  duration = o.duration;
+  caller = o.caller;
+  event = o.event;
+  kind = o.kind;
+  correct = o.correct;
+  pending = o.pending;
+
+  return *this;
 }
 
 

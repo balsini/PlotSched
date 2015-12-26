@@ -1,5 +1,4 @@
 #include "eventsparser.h"
-#include "eventview.h"
 
 #include <QDebug>
 
@@ -10,8 +9,8 @@ EventsParser::EventsParser()
   worker->moveToThread(&workerThread);
   connect(&workerThread, &QThread::finished, worker, &QObject::deleteLater);
   connect(this, &EventsParser::operate, worker, &EventsParserWorker::doWork);
-  connect(worker, &EventsParserWorker::resultReady, this, &EventsParser::handleResults);
-  connect(worker, SIGNAL(eventGeneratedByWorker(QGraphicsItem *)), this, SLOT(eventGeneratedByWorker(QGraphicsItem *)));
+  connect(worker, SIGNAL(fileParsed()), this, SLOT(handleResults()));
+  connect(worker, SIGNAL(eventGeneratedByWorker(Event)), this, SLOT(eventGeneratedByWorker(Event)));
 
   workerThread.start();
 }
@@ -27,10 +26,12 @@ EventsParser::~EventsParser()
   workerThread.wait();
 }
 
-void EventsParser::handleResults(const QString &)
-{}
+void EventsParser::handleResults()
+{
+  emit fileParsed();
+}
 
-void EventsParser::eventGeneratedByWorker(QGraphicsItem * e)
+void EventsParser::eventGeneratedByWorker(Event e)
 {
   emit eventGenerated(e);
 }
@@ -40,18 +41,16 @@ void EventsParserWorker::doWork(QString path)
   QString result;
   QFile f(path);
 
-  clearEventMap();
-
   if (f.open(QIODevice::ReadOnly | QIODevice::Text)) {
     while (!f.atEnd()) {
       Event e;
       e.parse(f.readLine());
       if (e.isCorrect()) {
-        EventView * ev = new EventView(e);
-        emit eventGeneratedByWorker(ev);
+        emit eventGeneratedByWorker(e);
       }
     }
   }
 
-  emit resultReady(result);
+
+  emit fileParsed();
 }

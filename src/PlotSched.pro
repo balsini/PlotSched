@@ -13,22 +13,22 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp\
-        schedulingvisualizer.cpp \
     customtoolbar.cpp \
     tracefilelister.cpp \
     eventsparser.cpp \
     event.cpp \
     eventview.cpp \
-    plot.cpp
+    plot.cpp \
+    eventsmanager.cpp
 
 HEADERS  += mainwindow.h\
-        schedulingvisualizer.hpp \
     customtoolbar.h \
     tracefilelister.h \
     eventsparser.h \
     event.h \
     eventview.h \
-    plot.h
+    plot.h \
+    eventsmanager.h
 
 FORMS    += mainwindow.ui
 

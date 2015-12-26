@@ -34,7 +34,8 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
   }
 
   ep = new EventsParser;
-  connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
+  //connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
+  connect(ep, SIGNAL(eventGenerated(Event)), &em, SLOT(newEventArrived(Event)));
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -52,7 +53,8 @@ MainWindow::MainWindow(QWidget *parent) :
   populate_dock();
 
   ep = new EventsParser;
-  connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
+  //connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
+  connect(ep, SIGNAL(eventGenerated(Event)), &em, SLOT(newEventArrived(Event)));
 }
 
 void MainWindow::populate_dock()

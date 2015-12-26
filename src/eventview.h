@@ -22,6 +22,4 @@ public:
   void drawCircle();
 };
 
-void clearEventMap();
-
 #endif // EVENTVIEW_H

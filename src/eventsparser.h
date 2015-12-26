@@ -18,8 +18,8 @@ public slots:
   void doWork(QString path);
 
 signals:
-  void resultReady(const QString &result);
-  void eventGeneratedByWorker(QGraphicsItem *);
+  void fileParsed();
+  void eventGeneratedByWorker(Event);
 };
 
 class EventsParser : public QObject
@@ -33,12 +33,13 @@ public:
   void parseFile(QString);
 
 public slots:
-  void handleResults(const QString &);
-  void eventGeneratedByWorker(QGraphicsItem *);
+  void handleResults();
+  void eventGeneratedByWorker(Event);
 
 signals:
   void operate(QString);
-  void eventGenerated(QGraphicsItem *);
+  void eventGenerated(Event);
+  void fileParsed();
 };
 
 #endif // EVENTSPARSER_H

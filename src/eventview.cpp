@@ -1,10 +1,6 @@
 #include "eventview.h"
 
-#include <QMap>
-
 #include <QGraphicsLineItem>
-
-QMap<QString, int> map;
 
 EventView::EventView(Event e, QGraphicsItem * parent) :
   QGraphicsItemGroup(parent)
@@ -25,13 +21,9 @@ void EventView::setEvent(Event e)
   //drawCircle(50, 50, 4);
   //drawCircle(0, 0, 4);
 
-
   qDeleteAll(this->childItems());
 
   e_ = new Event(e);
-
-  if (map.find(e.getCaller()) == map.end())
-    map.insert(e.getCaller(), map.count());
 
   switch (e.getKind()) {
     case RUNNING :
@@ -46,7 +38,7 @@ void EventView::setEvent(Event e)
     default: return;
   }
 
-  this->moveBy(e.getStart(), vertical_offset * map[e.getCaller()]);
+  this->moveBy(e.getStart(), vertical_offset * e.getRow()); // TODO
 }
 
 void EventView::drawCircle()
@@ -122,9 +114,4 @@ void EventView::drawRect(qreal duration)
   this->addToGroup(r);
 
   this->moveBy(0, -rectHeight);
-}
-
-void clearEventMap()
-{
-  map.clear();
 }
