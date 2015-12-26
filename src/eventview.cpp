@@ -9,7 +9,7 @@ QMap<QString, int> map;
 EventView::EventView(Event e, QGraphicsItem * parent) :
   QGraphicsItemGroup(parent)
 {
-  height = 20;
+  height = 30;
   vertical_offset = 50;
 
   setEvent(e);
@@ -112,14 +112,16 @@ void EventView::drawRect(qreal duration)
    *
    ******************************/
 
+  qreal rectHeight = height / 1.9;
+
   QGraphicsRectItem * r = new QGraphicsRectItem(0,
                                                 0,
                                                 duration,
-                                                height,
+                                                rectHeight,
                                                 this);
   this->addToGroup(r);
 
-  this->moveBy(0, -height);
+  this->moveBy(0, -rectHeight);
 }
 
 void clearEventMap()
