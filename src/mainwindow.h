@@ -3,7 +3,6 @@
 
 #include <QMainWindow>
 
-#include "schedulingvisualizer.hpp"
 #include "tracefilelister.h"
 #include "eventsparser.h"
 #include "plot.h"
@@ -20,7 +19,6 @@ class MainWindow : public QMainWindow
   Ui::MainWindow *ui;
 
   EventsManager em;
-  //SchedulingVisualizer * sv;
   QString filename;
   TraceFileLister * tfl;
   EventsParser * ep;
