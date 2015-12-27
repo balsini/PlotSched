@@ -37,7 +37,7 @@ void EventView::setEvent(Event e)
 
   switch (e.getKind()) {
     case RUNNING :
-      drawRect(e.getDuration(), eventToColor(e.getKind()));
+      drawRect(e.getDuration() * e.getMagnification(), eventToColor(e.getKind()));
       break;
     case ACTIVATION:
       drawArrowUp();
@@ -48,7 +48,7 @@ void EventView::setEvent(Event e)
     default: return;
   }
 
-  this->moveBy(e.getStart(), vertical_offset * e.getRow()); // TODO
+  this->moveBy(e.getStart() * e.getMagnification(), vertical_offset * e.getRow()); // TODO
 }
 
 void EventView::drawCircle()

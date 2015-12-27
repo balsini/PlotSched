@@ -1,7 +1,9 @@
 #include "eventsmanager.h"
 
 EventsManager::EventsManager()
-{}
+{
+  last_event = 0;
+}
 
 
 void EventsManager::clear()
@@ -16,4 +18,45 @@ void EventsManager::newEventArrived(Event e)
   while (i != events_container[e.getCaller()].end() && (*i).getStart() < e.getStart())
     ++i;
   events_container[e.getCaller()].insert(i, e);
+  if (e.getStart() > last_event)
+    last_event = e.getStart();
+}
+
+unsigned long EventsManager::countCallers()
+{
+  return events_container.count();
+}
+
+
+QList<Event> * EventsManager::getCallerEventsList(unsigned long caller)
+{
+  unsigned long c = 0;
+  QMap <QString, QList<Event>>::iterator i = events_container.begin();
+  while (c <= caller && i != events_container.end()) {
+    ++i;
+    ++c;
+  }
+  return &(*i);
+}
+
+
+QMap <QString, QList<Event>> * EventsManager::getCallers()
+{
+  return &events_container;
+}
+
+
+void EventsManager::magnify(qreal start, qreal end)
+{
+  qreal size = end - start;
+  qreal fraction = last_event / size;
+
+  for (QMap<QString, QList<Event>>::iterator l = events_container.begin();
+       l != events_container.end();
+       ++l) {
+    for (QList<Event>::iterator i = (*l).begin(); i != (*l).end(); ++i)
+      (*i).setMagnification(fraction);
+  }
+
+  last_event = last_event * fraction;
 }

@@ -36,6 +36,7 @@ public:
 public slots:
   void newTraceChosen(QString);
   void updatePlot();
+  void zoomChanged(qreal, qreal);
 
 private slots:
   void on_actionQuit_triggered();

@@ -45,5 +45,5 @@ void CustomScene::mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent)
     return;
 
   range->setEndPoint(mouseEvent->lastScenePos());
-  qDebug() << "Moving mouse to " << mouseEvent->lastScenePos();
+  //qDebug() << "Moving mouse to " << mouseEvent->lastScenePos();
 }

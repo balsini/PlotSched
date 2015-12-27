@@ -33,5 +33,5 @@ void Plot::clear()
 void Plot::rangeSelected(qreal init, qreal end)
 {
   qDebug() << "Zooming range selected : " << init << " " << end;
-  //emit zoomChanged(mouse_pressed_at, mouse_released_at);
+  emit zoomChanged(init, end);
 }

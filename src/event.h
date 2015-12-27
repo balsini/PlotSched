@@ -25,6 +25,8 @@ class Event : public QObject
   QString event;
   event_kind kind;
 
+  qreal magnification;
+
   bool correct;
   bool pending;
   bool range;
@@ -41,6 +43,8 @@ public:
   bool isRange();
   unsigned long getRow() {return row; }
   void setRow(unsigned long r) { row = r; }
+  void setMagnification(qreal magnification) {this->magnification = magnification; }
+  qreal getMagnification() { return magnification; }
   unsigned long getStart();
   unsigned long getDuration();
   QString getCaller();

@@ -20,11 +20,11 @@ public:
   void clear();
 
 signals:
+  void zoomChanged(qreal, qreal);
 
 public slots:
   void addNewItem(QGraphicsItem * i);
   void rangeSelected(qreal, qreal);
-
 };
 
 #endif // PLOT_H

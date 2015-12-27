@@ -33,6 +33,7 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
   //connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
   connect(ep, SIGNAL(eventGenerated(Event)), &em, SLOT(newEventArrived(Event)));
   connect(ep, SIGNAL(fileParsed()), this, SLOT(updatePlot()));
+  connect(plot, SIGNAL(zoomChanged(qreal,qreal)), this, SLOT(zoomChanged(qreal,qreal)));
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -51,6 +52,13 @@ MainWindow::MainWindow(QWidget *parent) :
   //connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
   connect(ep, SIGNAL(eventGenerated(Event)), &em, SLOT(newEventArrived(Event)));
   connect(ep, SIGNAL(fileParsed()), this, SLOT(updatePlot()));
+  connect(plot, SIGNAL(zoomChanged(qreal,qreal)), this, SLOT(zoomChanged(qreal,qreal)));
+}
+
+void MainWindow::zoomChanged(qreal start, qreal end)
+{
+  em.magnify(start, end);
+  updatePlot();
 }
 
 void MainWindow::populate_dock()
@@ -159,6 +167,7 @@ void MainWindow::on_actionTraces_Files_triggered()
 {
   tfl->setVisible(!tfl->isVisible());
 }
+
 
 void MainWindow::updatePlot()
 {

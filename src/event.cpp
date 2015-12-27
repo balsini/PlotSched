@@ -75,6 +75,7 @@ bool correctLine(QByteArray line)
 
 Event::Event()
 {
+  magnification = 1;
   correct = false;
 }
 
@@ -88,6 +89,7 @@ void Event::parse(QByteArray line)
 
 Event::Event(const Event &o) : QObject()
 {
+  magnification = o.magnification;
   row = o.row;
   time_start = o.time_start;
   duration = o.duration;
@@ -101,6 +103,7 @@ Event::Event(const Event &o) : QObject()
 
 Event& Event::operator=(const Event &o)
 {
+  magnification = o.magnification;
   row = o.row;
   time_start = o.time_start;
   duration = o.duration;
