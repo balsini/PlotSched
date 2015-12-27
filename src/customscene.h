@@ -3,11 +3,16 @@
 
 #include <QGraphicsScene>
 
+#include "rangeselector.h"
+
 class CustomScene : public QGraphicsScene
 {
   Q_OBJECT
 
-  qreal pressed_at;
+  RangeSelector * range;
+
+  bool pressed;
+  QPointF pressed_at;
 
 public:
   explicit CustomScene(QObject *parent = 0);
@@ -17,6 +22,7 @@ signals:
 
 public slots:
   virtual void mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent);
+  virtual void mouseMoveEvent(QGraphicsSceneMouseEvent *mouseEvent);
   virtual void mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent);
 
 };

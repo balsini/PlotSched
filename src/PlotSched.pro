@@ -20,7 +20,8 @@ SOURCES += main.cpp\
     eventview.cpp \
     plot.cpp \
     eventsmanager.cpp \
-    customscene.cpp
+    customscene.cpp \
+    rangeselector.cpp
 
 HEADERS  += mainwindow.h\
     customtoolbar.h \
@@ -30,7 +31,8 @@ HEADERS  += mainwindow.h\
     eventview.h \
     plot.h \
     eventsmanager.h \
-    customscene.h
+    customscene.h \
+    rangeselector.h
 
 FORMS    += mainwindow.ui
 
