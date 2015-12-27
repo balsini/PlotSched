@@ -20,13 +20,7 @@ public:
 signals:
 
 public slots:
-    void newEventArrived(Event e)
-    {
-      QList<Event>::iterator i = m[e.getCaller()].begin();
-      while (i != m[e.getCaller()].end() && (*i).getStart() < e.getStart())
-        ++i;
-      m[e.getCaller()].insert(i, e);
-    }
+    void newEventArrived(Event e);
 };
 
 #endif // EVENTSMANAGER_H
