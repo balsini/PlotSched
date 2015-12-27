@@ -9,6 +9,7 @@ enum event_kind {
   ACTIVATION,
   DEAD,
   RUNNING,
+  BLOCKED,
   DEADLINE
 };
 

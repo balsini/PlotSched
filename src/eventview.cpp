@@ -1,6 +1,16 @@
 #include "eventview.h"
 
 #include <QGraphicsLineItem>
+#include <QBrush>
+
+QColor EventView::eventToColor(event_kind e)
+{
+  switch (e) {
+    case RUNNING : return Qt::green;
+    case BLOCKED : return Qt::green;
+    default: return Qt::white;
+  }
+}
 
 EventView::EventView(const Event &e, QGraphicsItem * parent) :
   QGraphicsItemGroup(parent)
@@ -27,7 +37,7 @@ void EventView::setEvent(Event e)
 
   switch (e.getKind()) {
     case RUNNING :
-      drawRect(e.getDuration());
+      drawRect(e.getDuration(), eventToColor(e.getKind()));
       break;
     case ACTIVATION:
       drawArrowUp();
@@ -92,7 +102,7 @@ void EventView::drawArrowUp()
 }
 
 
-void EventView::drawRect(qreal duration)
+void EventView::drawRect(qreal duration, QColor color)
 {
   /******************************
    *
@@ -111,6 +121,8 @@ void EventView::drawRect(qreal duration)
                                                 duration,
                                                 rectHeight,
                                                 this);
+  r->setBrush(QBrush(color));
+
   this->addToGroup(r);
 
   this->moveBy(0, -rectHeight);
