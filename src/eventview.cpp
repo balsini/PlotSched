@@ -2,7 +2,7 @@
 
 #include <QGraphicsLineItem>
 
-EventView::EventView(Event e, QGraphicsItem * parent) :
+EventView::EventView(const Event &e, QGraphicsItem * parent) :
   QGraphicsItemGroup(parent)
 {
   height = 30;

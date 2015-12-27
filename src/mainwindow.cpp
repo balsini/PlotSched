@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "customtoolbar.h"
+#include "eventview.h"
 
 #include <QToolBar>
 #include <QToolButton>
@@ -31,6 +32,7 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
   ep = new EventsParser;
   //connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
   connect(ep, SIGNAL(eventGenerated(Event)), &em, SLOT(newEventArrived(Event)));
+  connect(ep, SIGNAL(fileParsed()), this, SLOT(updatePlot()));
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -48,6 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
   ep = new EventsParser;
   //connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
   connect(ep, SIGNAL(eventGenerated(Event)), &em, SLOT(newEventArrived(Event)));
+  connect(ep, SIGNAL(fileParsed()), this, SLOT(updatePlot()));
 }
 
 void MainWindow::populate_dock()
@@ -146,7 +149,7 @@ void MainWindow::newTraceChosen(QString path)
 
   QFileInfo f(path);
   if (f.isFile()) {
-    plot->clear();
+    em.clear();
     ep->parseFile(path);
   }
 }
@@ -155,4 +158,23 @@ void MainWindow::newTraceChosen(QString path)
 void MainWindow::on_actionTraces_Files_triggered()
 {
   tfl->setVisible(!tfl->isVisible());
+}
+
+void MainWindow::updatePlot()
+{
+  plot->clear();
+
+  QMap <QString, QList<Event>> * m = em.getCallers();
+  for (QList<Event> l : *m) {
+    qDebug() << "Trovato caller";
+    for (Event e : l) {
+      qDebug() << " - Trovato evento";
+      EventView * ev = new EventView(e);
+      plot->addNewItem(ev);
+    }
+  }
+  //for (auto caller : em)
+  //    qDebug() << "Trovato Evento :" << e.getCaller() << " " << e.getStart();
+
+  qDebug() << "MainWindow::updatePlot()";
 }

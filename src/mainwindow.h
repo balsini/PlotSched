@@ -35,6 +35,7 @@ public:
 
 public slots:
   void newTraceChosen(QString);
+  void updatePlot();
 
 private slots:
   void on_actionQuit_triggered();
