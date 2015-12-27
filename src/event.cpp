@@ -51,7 +51,7 @@ void Event::parseLine(QByteArray line)
     Event * ev = new Event(*this);
     pending_events[caller].insert(kind, ev);
   }
-
+  /*
   qDebug() << "Read from device : " << time_start;
   qDebug() << "Read from device : " << caller;
   qDebug() << "Read from device : " << cpu;
@@ -59,6 +59,7 @@ void Event::parseLine(QByteArray line)
   qDebug() << "Read from device : " << status;
 
   qDebug() << "";
+  */
 }
 
 

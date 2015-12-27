@@ -19,7 +19,8 @@ SOURCES += main.cpp\
     event.cpp \
     eventview.cpp \
     plot.cpp \
-    eventsmanager.cpp
+    eventsmanager.cpp \
+    customscene.cpp
 
 HEADERS  += mainwindow.h\
     customtoolbar.h \
@@ -28,7 +29,8 @@ HEADERS  += mainwindow.h\
     event.h \
     eventview.h \
     plot.h \
-    eventsmanager.h
+    eventsmanager.h \
+    customscene.h
 
 FORMS    += mainwindow.ui
 

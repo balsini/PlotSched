@@ -3,20 +3,17 @@
 
 #include <QWidget>
 
-#include <QGraphicsScene>
 #include <QGraphicsView>
-
 #include <QGraphicsItem>
+
+#include "customscene.h"
 
 class Plot : public QWidget
 {
   Q_OBJECT
 
-  QGraphicsScene * scene;
+  CustomScene * scene;
   QGraphicsView * view;
-
-protected:
-  virtual void wheelEvent(QWheelEvent* event);
 
 public:
   explicit Plot(QWidget *parent = 0);
@@ -26,6 +23,7 @@ signals:
 
 public slots:
   void addNewItem(QGraphicsItem * i);
+  void rangeSelected(qreal, qreal);
 
 };
 

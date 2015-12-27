@@ -3,14 +3,18 @@
 #include <QGridLayout>
 #include <QWheelEvent>
 
+#include <QDebug>
+
 Plot::Plot(QWidget *parent) :
   QWidget(parent)
 {
-  scene = new QGraphicsScene(this);
+  scene = new CustomScene(this);
   view = new QGraphicsView(scene);
 
   this->setLayout(new QGridLayout(this));
   this->layout()->addWidget(view);
+
+  connect(scene, SIGNAL(rangeSelected(qreal,qreal)), this, SLOT(rangeSelected(qreal, qreal)));
 }
 
 
@@ -25,19 +29,9 @@ void Plot::clear()
   scene->clear();
 }
 
-void Plot::wheelEvent(QWheelEvent *event)
+
+void Plot::rangeSelected(qreal init, qreal end)
 {
-  view->setTransformationAnchor(QGraphicsView::AnchorUnderMouse);
-  // Scale the view / do the zoom
-  double scaleFactor = 1.1;
-  if(event->delta() > 0) {
-    // Zoom in
-    view->scale(scaleFactor, 1);
-
-  } else {
-    // Zooming out
-    view->scale(1.0 / scaleFactor, 1);
-  }
-
-  //ui->graphicsView->setTransform(QTransform(h11, h12, h21, h22, 0, 0));
+  qDebug() << "Zooming range selected : " << init << " " << end;
+  //emit zoomChanged(mouse_pressed_at, mouse_released_at);
 }
