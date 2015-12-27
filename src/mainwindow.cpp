@@ -163,15 +163,18 @@ void MainWindow::on_actionTraces_Files_triggered()
 void MainWindow::updatePlot()
 {
   plot->clear();
+  unsigned long row = 0;
 
   QMap <QString, QList<Event>> * m = em.getCallers();
   for (QList<Event> l : *m) {
     qDebug() << "Trovato caller";
     for (Event e : l) {
       qDebug() << " - Trovato evento";
+      e.setRow(row);
       EventView * ev = new EventView(e);
       plot->addNewItem(ev);
     }
+    ++row;
   }
   //for (auto caller : em)
   //    qDebug() << "Trovato Evento :" << e.getCaller() << " " << e.getStart();
