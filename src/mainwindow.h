@@ -7,6 +7,7 @@
 #include "eventsparser.h"
 #include "plot.h"
 #include "eventsmanager.h"
+#include "plotframe.h"
 
 namespace Ui {
   class MainWindow;
@@ -35,7 +36,7 @@ public:
 
 public slots:
   void newTraceChosen(QString);
-  void updatePlot();
+  void updatePlot(qreal center = 0);
   void zoomChanged(qreal, qreal);
 
 private slots:

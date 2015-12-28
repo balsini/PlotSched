@@ -13,11 +13,11 @@ QColor EventView::eventToColor(event_kind e)
   }
 }
 
-EventView::EventView(const Event &e, QGraphicsItem * parent) :
+EventView::EventView(const Event &e, qreal offset, QGraphicsItem * parent) :
   QGraphicsItemGroup(parent)
 {
   height = 30;
-  vertical_offset = 50;
+  vertical_offset = offset;
 
   setEvent(e);
 }

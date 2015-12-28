@@ -58,8 +58,7 @@ MainWindow::MainWindow(QWidget *parent) :
 void MainWindow::zoomChanged(qreal start, qreal end)
 {
   qreal center = em.magnify(start, end);
-  updatePlot();
-  plot->updateSceneView(center);
+  updatePlot(center);
 }
 
 void MainWindow::populate_dock()
@@ -170,14 +169,19 @@ void MainWindow::on_actionTraces_Files_triggered()
 }
 
 
-void MainWindow::updatePlot()
+void MainWindow::updatePlot(qreal center)
 {
   plot->clear();
   unsigned long row = 0;
 
+  PlotFrame * pf = new PlotFrame;
+
   QMap <QString, QList<Event>> * m = em.getCallers();
   for (QList<Event> l : *m) {
     //qDebug() << "Trovato caller";
+
+    pf->addCaller(l.first().getCaller());
+
     for (Event e : l) {
       //qDebug() << " - Trovato evento";
       e.setRow(row);
@@ -186,8 +190,13 @@ void MainWindow::updatePlot()
     }
     ++row;
   }
-  //for (auto caller : em)
-  //    qDebug() << "Trovato Evento :" << e.getCaller() << " " << e.getStart();
+
+  qreal rightmost = plot->updateSceneView(center);
+
+  pf->setWidth(rightmost);
+  plot->addNewItem(pf);
+
+  plot->updateSceneView(center);
 
   qDebug() << "MainWindow::updatePlot()";
 }

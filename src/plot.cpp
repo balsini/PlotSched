@@ -38,7 +38,7 @@ void Plot::rangeSelected(qreal init, qreal end)
 }
 
 
-void Plot::updateSceneView(qreal center)
+qreal Plot::updateSceneView(qreal center)
 {
   scene->setSceneRect(scene->itemsBoundingRect());
 
@@ -60,4 +60,6 @@ void Plot::updateSceneView(qreal center)
     //view->centerOn((init + end) / 2, view->pos().y());
   }
   */
+
+  return scene->itemsBoundingRect().right();
 }

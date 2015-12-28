@@ -16,7 +16,7 @@ class EventView : public QGraphicsItemGroup
   void drawText();
 
 public:
-  explicit EventView(const Event &e, QGraphicsItem * parent = 0);
+  explicit EventView(const Event &e, qreal offset = 50, QGraphicsItem * parent = 0);
   ~EventView();
 
   void drawArrowUp();
