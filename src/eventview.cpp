@@ -8,7 +8,7 @@ QColor EventView::eventToColor(event_kind e)
 {
   switch (e) {
     case RUNNING : return Qt::green;
-    case BLOCKED : return Qt::green;
+    case BLOCKED : return Qt::red;
     default: return Qt::white;
   }
 }
@@ -42,8 +42,14 @@ void EventView::setEvent(Event e)
     case RUNNING :
       drawRect(e.getDuration() * e.getMagnification(), eventToColor(e.getKind()));
       break;
+    case BLOCKED :
+      drawRect(e.getDuration() * e.getMagnification(), eventToColor(e.getKind()));
+      break;
     case ACTIVATION:
       drawArrowUp();
+      break;
+    case DEADLINE:
+      drawArrowDown();
       break;
     case DEAD:
       drawCircle();
@@ -96,6 +102,49 @@ void EventView::drawArrowUp()
                                                     0,
                                                     -height / 5.0,
                                                     height / 4.0,
+                                                    this);
+
+  body->moveBy(0, -height);
+  left->moveBy(0, -height);
+  right->moveBy(0, -height);
+
+  this->addToGroup(body);
+  this->addToGroup(left);
+  this->addToGroup(right);
+}
+
+
+void EventView::drawArrowDown()
+{
+  /******************************
+   *
+   *                / (x2, y2)
+   *              ///
+   *            / / /
+   *   (left) /  /  / (right)
+   *            /
+   *           /
+   *          /
+   *         / (x1, y1)
+   *
+   ******************************/
+
+  // First of all, create an arrow with (x1, y1) = (0, 0)
+
+  QGraphicsLineItem * body = new QGraphicsLineItem(0,
+                                                   0,
+                                                   0,
+                                                   height,
+                                                   this);
+  QGraphicsLineItem * left = new QGraphicsLineItem(0,
+                                                   height,
+                                                   height / 5.0,
+                                                   height * 3.0 / 4.0,
+                                                   this);
+  QGraphicsLineItem * right = new QGraphicsLineItem(0,
+                                                    height,
+                                                    -height / 5.0,
+                                                    height * 3.0 / 4.0,
                                                     this);
 
   body->moveBy(0, -height);

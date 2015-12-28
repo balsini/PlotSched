@@ -20,6 +20,7 @@ public:
   ~EventView();
 
   void drawArrowUp();
+  void drawArrowDown();
   void drawRect(qreal duration, QColor color);
   void drawCircle();
 };

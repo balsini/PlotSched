@@ -26,6 +26,8 @@ void Event::parseLine(QByteArray line)
     kind = RUNNING;
   } else if (event == "DEAD") {
     kind = DEAD;
+  }  else if (event == "BLOCKED") {
+    kind = BLOCKED;
   } else if (event == "ACTIVATION" || event == "CREATION") {
     kind = ACTIVATION;
   } else if (event == "DEADLINE") {
