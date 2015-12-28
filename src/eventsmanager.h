@@ -27,7 +27,7 @@ signals:
 
 public slots:
     void newEventArrived(Event e);
-    void magnify(qreal start, qreal end);
+    qreal magnify(qreal start, qreal end);
 };
 
 #endif // EVENTSMANAGER_H

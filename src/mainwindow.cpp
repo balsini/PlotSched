@@ -57,8 +57,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
 void MainWindow::zoomChanged(qreal start, qreal end)
 {
-  em.magnify(start, end);
+  qreal center = em.magnify(start, end);
   updatePlot();
+  plot->updateSceneView(center);
 }
 
 void MainWindow::populate_dock()
@@ -78,8 +79,8 @@ void MainWindow::populate_toolbar()
 
   connect(ct, SIGNAL(openButtonClicked()), this, SLOT(on_actionOpen_Folder_triggered()));
   connect(ct, SIGNAL(refreshButtonClicked()), this, SLOT(on_actionRefresh_Folder_triggered()));
-  /*
 
+  /*
   this->ui->mainToolBar->addSeparator();
 
 
@@ -176,9 +177,9 @@ void MainWindow::updatePlot()
 
   QMap <QString, QList<Event>> * m = em.getCallers();
   for (QList<Event> l : *m) {
-    qDebug() << "Trovato caller";
+    //qDebug() << "Trovato caller";
     for (Event e : l) {
-      qDebug() << " - Trovato evento";
+      //qDebug() << " - Trovato evento";
       e.setRow(row);
       EventView * ev = new EventView(e);
       plot->addNewItem(ev);

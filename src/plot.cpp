@@ -33,20 +33,31 @@ void Plot::clear()
 void Plot::rangeSelected(qreal init, qreal end)
 {
   qDebug() << "Zooming range selected : " << init << " " << end;
+  qDebug() << "Center point : " << (init + end) / 2;
   emit zoomChanged(init, end);
+}
 
+
+void Plot::updateSceneView(qreal center)
+{
   scene->setSceneRect(scene->itemsBoundingRect());
 
-  /*
-  qreal old_x = scene->itemsBoundingRect().x();
+  //qreal old_x = scene->itemsBoundingRect().x();
   qreal old_y = scene->itemsBoundingRect().y();
-  qreal old_w = scene->itemsBoundingRect().width();
-  qreal old_h = scene->itemsBoundingRect().height();
+  //qreal old_w = scene->itemsBoundingRect().width();
+  //qreal old_h = scene->itemsBoundingRect().height();
 
-  qreal size = end - init;
-  if (size > 0)
-    scene->setSceneRect(init, old_y, size, old_h);
-  else
-    scene->setSceneRect(init, old_y, size, old_h);
-    */
+
+  //qDebug() << "The new esureVisible is : " << start << " " << end;
+  qDebug() << "The center is : " << center;
+
+  view->centerOn(center, old_y);
+  /*
+
+  qreal size = end - start;
+  if (size > 0) {
+    view->ensureVisible(start, old_y, end, old_h);
+    //view->centerOn((init + end) / 2, view->pos().y());
+  }
+  */
 }

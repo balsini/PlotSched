@@ -17,6 +17,7 @@ class Plot : public QWidget
 
 public:
   explicit Plot(QWidget *parent = 0);
+  void updateSceneView(qreal center);
   void clear();
 
 signals:

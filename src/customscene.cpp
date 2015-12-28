@@ -16,13 +16,22 @@ void CustomScene::mousePressEvent(QGraphicsSceneMouseEvent * mouseEvent)
 {
   //qDebug() << "Mouse pressed at " << mouseEvent->lastScenePos();
 
-  pressed = true;
-  pressed_at = mouseEvent->lastScenePos();
+  switch (mouseEvent->button()) {
+    case Qt::LeftButton :
+      qDebug() << "Mouse pressed at " << mouseEvent->lastScenePos();
+      break;
+    case Qt::RightButton :
+      pressed = true;
+      pressed_at = mouseEvent->lastScenePos();
 
-  range = new RangeSelector;
-  range->setStartPoint(pressed_at);
-  this->addItem(range);
-  range->setVisible();
+      range = new RangeSelector;
+      range->setStartPoint(pressed_at);
+      range->setEndPoint(pressed_at);
+      this->addItem(range);
+      range->setVisible();
+      break;
+    default : break;
+  }
 }
 
 
@@ -30,12 +39,20 @@ void CustomScene::mouseReleaseEvent(QGraphicsSceneMouseEvent * mouseEvent)
 {
   //qDebug() << "Mouse released at " << mouseEvent->lastScenePos();
 
-  this->removeItem(range);
-  delete range;
-  range = 0;
-  pressed = false;
+  switch (mouseEvent->button()) {
+    case Qt::LeftButton :
+      break;
+    case Qt::RightButton :
+      this->removeItem(range);
+      delete range;
+      range = 0;
+      pressed = false;
 
-  emit rangeSelected(pressed_at.x(), mouseEvent->lastScenePos().x());
+      if (pressed_at.x() != mouseEvent->lastScenePos().x())
+        emit rangeSelected(pressed_at.x(), mouseEvent->lastScenePos().x());
+      break;
+    default : break;
+  }
 }
 
 

@@ -1,5 +1,7 @@
 #include "eventsmanager.h"
 
+#include <QDebug>
+
 EventsManager::EventsManager()
 {
   last_event = 0;
@@ -49,16 +51,15 @@ QMap <QString, QList<Event>> * EventsManager::getCallers()
 }
 
 
-void EventsManager::magnify(qreal start, qreal end)
+qreal EventsManager::magnify(qreal start, qreal end)
 {
+  qreal new_center;
   qreal size = end - start;
-
-  if (size == 0)
-    return;
-
   qreal last_event_magnified = last_event * last_magnification;
   qreal fraction;
   qreal normalized = size / last_event_magnified;
+
+  new_center = (start + end) / 2 / last_magnification;
 
   if (size > 0)
     fraction = 1 / normalized;
@@ -73,4 +74,12 @@ void EventsManager::magnify(qreal start, qreal end)
     for (QList<Event>::iterator i = (*l).begin(); i != (*l).end(); ++i)
       (*i).setMagnification(fraction);
   }
+
+  qDebug() << "The magnification is : " << fraction;
+  if (size > 0)
+    qDebug() << "The new margins are : " << start * fraction << " " << end * fraction;
+
+  new_center *= last_magnification;
+
+  return new_center;
 }
