@@ -10,6 +10,9 @@ class RangeSelector : public QGraphicsItemGroup
   QGraphicsLineItem * vertical_left;
   QGraphicsLineItem * vertical_right;
 
+  QGraphicsLineItem * sym_h; // For creating the symbol '+' or '-'
+  QGraphicsLineItem * sym_v;
+
   QPointF start;
   QPointF end;
 
