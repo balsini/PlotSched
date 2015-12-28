@@ -36,4 +36,17 @@ void Plot::rangeSelected(qreal init, qreal end)
   emit zoomChanged(init, end);
 
   scene->setSceneRect(scene->itemsBoundingRect());
+
+  /*
+  qreal old_x = scene->itemsBoundingRect().x();
+  qreal old_y = scene->itemsBoundingRect().y();
+  qreal old_w = scene->itemsBoundingRect().width();
+  qreal old_h = scene->itemsBoundingRect().height();
+
+  qreal size = end - init;
+  if (size > 0)
+    scene->setSceneRect(init, old_y, size, old_h);
+  else
+    scene->setSceneRect(init, old_y, size, old_h);
+    */
 }

@@ -3,12 +3,15 @@
 EventsManager::EventsManager()
 {
   last_event = 0;
+  last_magnification = 1;
 }
 
 
 void EventsManager::clear()
 {
   events_container.clear();
+  last_magnification = 1;
+  last_event = 0;
 }
 
 
@@ -48,7 +51,6 @@ QMap <QString, QList<Event>> * EventsManager::getCallers()
 
 void EventsManager::magnify(qreal start, qreal end)
 {
-  static qreal last_magnification = 1;
   qreal size = end - start;
 
   if (size == 0)

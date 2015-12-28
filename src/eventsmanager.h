@@ -14,6 +14,7 @@ class EventsManager : public QObject
 
   QMap<QString, QList<Event>> events_container;
   qreal last_event;
+  qreal last_magnification;
 
 public:
     EventsManager();
