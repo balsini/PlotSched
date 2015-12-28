@@ -48,8 +48,23 @@ QMap <QString, QList<Event>> * EventsManager::getCallers()
 
 void EventsManager::magnify(qreal start, qreal end)
 {
+  static qreal last_magnification = 1;
+
+  if (size == 0)
+    return;
+
+  qreal last_event_magnified = last_event * last_magnification;
   qreal size = end - start;
-  qreal fraction = last_event / size;
+  qreal fraction;
+
+  qreal normalized = size / last_event_magnified;
+
+  if (size > 0)
+    fraction = 1 / normalized;
+  else
+    fraction = -normalized;
+
+  last_magnification = fraction;
 
   for (QMap<QString, QList<Event>>::iterator l = events_container.begin();
        l != events_container.end();
@@ -57,6 +72,4 @@ void EventsManager::magnify(qreal start, qreal end)
     for (QList<Event>::iterator i = (*l).begin(); i != (*l).end(); ++i)
       (*i).setMagnification(fraction);
   }
-
-  last_event = last_event * fraction;
 }
