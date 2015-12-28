@@ -2,6 +2,7 @@
 
 #include <QGraphicsLineItem>
 #include <QBrush>
+#include <QGraphicsSimpleTextItem>
 
 QColor EventView::eventToColor(event_kind e)
 {
@@ -34,6 +35,8 @@ void EventView::setEvent(Event e)
   qDeleteAll(this->childItems());
 
   e_ = new Event(e);
+
+  drawText();
 
   switch (e.getKind()) {
     case RUNNING :
@@ -94,11 +97,14 @@ void EventView::drawArrowUp()
                                                     -height / 5.0,
                                                     height / 4.0,
                                                     this);
+
+  body->moveBy(0, -height);
+  left->moveBy(0, -height);
+  right->moveBy(0, -height);
+
   this->addToGroup(body);
   this->addToGroup(left);
   this->addToGroup(right);
-
-  this->moveBy(0, -height);
 }
 
 
@@ -123,7 +129,23 @@ void EventView::drawRect(qreal duration, QColor color)
                                                 this);
   r->setBrush(QBrush(color));
 
-  this->addToGroup(r);
+  r->moveBy(0, -rectHeight);
 
-  this->moveBy(0, -rectHeight);
+  this->addToGroup(r);
+}
+
+void EventView::drawText()
+{
+  QGraphicsSimpleTextItem * start = new QGraphicsSimpleTextItem(QString::number(e_->getStart()),
+                                                                this);
+  start->setPos(0,0);
+  this->addToGroup(start);
+
+  if (e_->getDuration() > 0) {
+    QGraphicsSimpleTextItem * end = new QGraphicsSimpleTextItem(QString::number(e_->getStart() + e_->getDuration()),
+                                                                this);
+    end->setPos(0,0);
+    end->moveBy(e_->getDuration() * e_->getMagnification(), 0);
+    this->addToGroup(end);
+  }
 }

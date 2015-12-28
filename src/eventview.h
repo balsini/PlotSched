@@ -13,6 +13,7 @@ class EventView : public QGraphicsItemGroup
 
   void setEvent(Event e);
   QColor eventToColor(event_kind e);
+  void drawText();
 
 public:
   explicit EventView(const Event &e, QGraphicsItem * parent = 0);
