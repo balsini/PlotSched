@@ -49,14 +49,13 @@ QMap <QString, QList<Event>> * EventsManager::getCallers()
 void EventsManager::magnify(qreal start, qreal end)
 {
   static qreal last_magnification = 1;
+  qreal size = end - start;
 
   if (size == 0)
     return;
 
   qreal last_event_magnified = last_event * last_magnification;
-  qreal size = end - start;
   qreal fraction;
-
   qreal normalized = size / last_event_magnified;
 
   if (size > 0)

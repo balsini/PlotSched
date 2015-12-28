@@ -34,4 +34,6 @@ void Plot::rangeSelected(qreal init, qreal end)
 {
   qDebug() << "Zooming range selected : " << init << " " << end;
   emit zoomChanged(init, end);
+
+  scene->setSceneRect(scene->itemsBoundingRect());
 }
