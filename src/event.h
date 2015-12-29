@@ -10,7 +10,8 @@ enum event_kind {
   DEAD,
   RUNNING,
   BLOCKED,
-  DEADLINE
+  DEADLINE,
+  MISS
 };
 
 class Event : public QObject

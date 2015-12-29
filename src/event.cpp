@@ -32,6 +32,8 @@ void Event::parseLine(QByteArray line)
     kind = ACTIVATION;
   } else if (event == "DEADLINE") {
     kind = DEADLINE;
+  } else if (event == "MISS") {
+    kind = MISS;
   }
 
   if (status == "I") {

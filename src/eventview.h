@@ -21,6 +21,7 @@ public:
 
   void drawArrowUp();
   void drawArrowDown();
+  void drawArrowDownRed();
   void drawRect(qreal duration, QColor color);
   void drawCircle();
 };

@@ -3,6 +3,7 @@
 #include <QGraphicsLineItem>
 #include <QBrush>
 #include <QGraphicsSimpleTextItem>
+#include <QPen>
 
 QColor EventView::eventToColor(event_kind e)
 {
@@ -45,13 +46,16 @@ void EventView::setEvent(Event e)
     case BLOCKED :
       drawRect(e.getDuration() * e.getMagnification(), eventToColor(e.getKind()));
       break;
-    case ACTIVATION:
+    case ACTIVATION :
       drawArrowUp();
       break;
-    case DEADLINE:
+    case DEADLINE :
       drawArrowDown();
       break;
-    case DEAD:
+    case MISS :
+      drawArrowDownRed();
+      break;
+    case DEAD :
       drawCircle();
       break;
     default: return;
@@ -116,21 +120,6 @@ void EventView::drawArrowUp()
 
 void EventView::drawArrowDown()
 {
-  /******************************
-   *
-   *                / (x2, y2)
-   *              ///
-   *            / / /
-   *   (left) /  /  / (right)
-   *            /
-   *           /
-   *          /
-   *         / (x1, y1)
-   *
-   ******************************/
-
-  // First of all, create an arrow with (x1, y1) = (0, 0)
-
   QGraphicsLineItem * body = new QGraphicsLineItem(0,
                                                    0,
                                                    0,
@@ -146,6 +135,42 @@ void EventView::drawArrowDown()
                                                     -height / 5.0,
                                                     height * 3.0 / 4.0,
                                                     this);
+
+  body->moveBy(0, -height);
+  left->moveBy(0, -height);
+  right->moveBy(0, -height);
+
+  this->addToGroup(body);
+  this->addToGroup(left);
+  this->addToGroup(right);
+}
+
+
+void EventView::drawArrowDownRed()
+{
+  QGraphicsLineItem * body = new QGraphicsLineItem(0,
+                                                   0,
+                                                   0,
+                                                   height,
+                                                   this);
+  QGraphicsLineItem * left = new QGraphicsLineItem(0,
+                                                   height,
+                                                   height / 5.0,
+                                                   height * 3.0 / 4.0,
+                                                   this);
+  QGraphicsLineItem * right = new QGraphicsLineItem(0,
+                                                    height,
+                                                    -height / 5.0,
+                                                    height * 3.0 / 4.0,
+                                                    this);
+
+  QPen p;
+  p.setColor(Qt::red);
+  p.setWidth(2);
+
+  body->setPen(p);
+  left->setPen(p);
+  right->setPen(p);
 
   body->moveBy(0, -height);
   left->moveBy(0, -height);

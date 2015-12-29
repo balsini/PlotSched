@@ -27,6 +27,7 @@ void EventsManager::newEventArrived(Event e)
     last_event = e.getStart();
 }
 
+
 unsigned long EventsManager::countCallers()
 {
   return events_container.count();
