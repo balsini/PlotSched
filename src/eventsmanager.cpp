@@ -52,7 +52,7 @@ QMap <QString, QList<Event>> * EventsManager::getCallers()
 }
 
 
-qreal EventsManager::magnify(qreal start, qreal end)
+qreal EventsManager::magnify(qreal start, qreal end, qreal width)
 {
   qreal new_center;
   qreal size = end - start;

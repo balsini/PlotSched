@@ -21,7 +21,7 @@ public:
   void clear();
 
 signals:
-  void zoomChanged(qreal, qreal);
+  void zoomChanged(qreal, qreal, qreal);
 
 public slots:
   void addNewItem(QGraphicsItem * i);

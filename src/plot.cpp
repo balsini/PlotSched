@@ -34,7 +34,8 @@ void Plot::rangeSelected(qreal init, qreal end)
 {
   qDebug() << "Zooming range selected : " << init << " " << end;
   qDebug() << "Center point : " << (init + end) / 2;
-  emit zoomChanged(init, end);
+  qDebug() << "View width : " << view->width();
+  emit zoomChanged(init, end, view->width());
 }
 
 

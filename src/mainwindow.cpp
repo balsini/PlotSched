@@ -33,7 +33,7 @@ MainWindow::MainWindow(QString folder, QWidget *parent) :
   //connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
   connect(ep, SIGNAL(eventGenerated(Event)), &em, SLOT(newEventArrived(Event)));
   connect(ep, SIGNAL(fileParsed()), this, SLOT(updatePlot()));
-  connect(plot, SIGNAL(zoomChanged(qreal,qreal)), this, SLOT(zoomChanged(qreal,qreal)));
+  connect(plot, SIGNAL(zoomChanged(qreal,qreal,qreal)), this, SLOT(zoomChanged(qreal,qreal,qreal)));
 }
 
 MainWindow::MainWindow(QWidget *parent) :
@@ -52,12 +52,12 @@ MainWindow::MainWindow(QWidget *parent) :
   //connect(ep, SIGNAL(eventGenerated(QGraphicsItem*)), plot, SLOT(addNewItem(QGraphicsItem*)));
   connect(ep, SIGNAL(eventGenerated(Event)), &em, SLOT(newEventArrived(Event)));
   connect(ep, SIGNAL(fileParsed()), this, SLOT(updatePlot()));
-  connect(plot, SIGNAL(zoomChanged(qreal,qreal)), this, SLOT(zoomChanged(qreal,qreal)));
+  connect(plot, SIGNAL(zoomChanged(qreal,qreal,qreal)), this, SLOT(zoomChanged(qreal,qreal,qreal)));
 }
 
-void MainWindow::zoomChanged(qreal start, qreal end)
+void MainWindow::zoomChanged(qreal start, qreal end, qreal windowWidth)
 {
-  qreal center = em.magnify(start, end);
+  qreal center = em.magnify(start, end, windowWidth);
   updatePlot(center);
 }
 
