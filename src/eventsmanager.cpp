@@ -55,17 +55,16 @@ QMap <QString, QList<Event>> * EventsManager::getCallers()
 qreal EventsManager::magnify(qreal start, qreal end, qreal width)
 {
   qreal new_center;
-  qreal size = end - start;
-  qreal last_event_magnified = last_event * last_magnification;
   qreal fraction;
-  qreal normalized = size / last_event_magnified;
+  qreal size = end - start;
+  qreal magnification = width / size;
 
   new_center = (start + end) / 2 / last_magnification;
 
   if (size > 0)
-    fraction = 1 / normalized;
+    fraction = magnification;
   else
-    fraction = -normalized;
+    fraction = -last_magnification / magnification;
 
   last_magnification = fraction;
 
