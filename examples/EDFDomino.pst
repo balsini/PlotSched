@@ -30,7 +30,6 @@
 460	Task_4	0	RUNNING		S
 510	Task_4	0	RUNNING		E
 
-300	Task_0	0	MISS		I
 350	Task_1	0	MISS		I
 400	Task_2	0	MISS		I
 450	Task_3	0	MISS		I
