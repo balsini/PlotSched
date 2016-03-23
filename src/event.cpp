@@ -30,6 +30,8 @@ void Event::parseLine(QByteArray line)
     kind = BLOCKED;
   } else if (event == "ACTIVATION" || event == "CREATION") {
     kind = ACTIVATION;
+  } else if (event == "CONFIGURATION") {
+    kind = CONFIGURATION;
   } else if (event == "DEADLINE") {
     kind = DEADLINE;
   } else if (event == "MISS") {

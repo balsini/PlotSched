@@ -11,7 +11,8 @@ enum event_kind {
   RUNNING,
   BLOCKED,
   DEADLINE,
-  MISS
+  MISS,
+  CONFIGURATION
 };
 
 class Event : public QObject

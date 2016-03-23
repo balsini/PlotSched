@@ -10,6 +10,7 @@ QColor EventView::eventToColor(event_kind e)
   switch (e) {
     case RUNNING : return Qt::green;
     case BLOCKED : return Qt::red;
+    case CONFIGURATION : return Qt::yellow;
     default: return Qt::white;
   }
 }
@@ -51,6 +52,9 @@ void EventView::setEvent(Event e)
       break;
     case DEADLINE :
       drawArrowDown();
+      break;
+    case CONFIGURATION :
+      drawRect(e.getDuration() * e.getMagnification(), eventToColor(e.getKind()));
       break;
     case MISS :
       drawArrowDownRed();
