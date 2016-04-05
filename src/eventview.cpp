@@ -54,7 +54,7 @@ void EventView::setEvent(Event e)
       drawArrowDown();
       break;
     case CONFIGURATION :
-      drawRect(e.getDuration() * e.getMagnification(), eventToColor(e.getKind()));
+      drawRectH(e.getDuration() * e.getMagnification(), eventToColor(e.getKind()));
       break;
     case MISS :
       drawArrowDownRed();
@@ -211,6 +211,34 @@ void EventView::drawRect(qreal duration, QColor color)
 
   this->addToGroup(r);
 }
+
+
+void EventView::drawRectH(qreal duration, QColor color)
+{
+  /******************************
+   *
+   *          ____________
+   *         |            |
+   *         |            | height
+   *         |____________|
+   *  (x1, y1)  duration
+   *
+   ******************************/
+
+  qreal rectHeight = height / 1.5;
+
+  QGraphicsRectItem * r = new QGraphicsRectItem(0,
+                                                0,
+                                                duration,
+                                                rectHeight,
+                                                this);
+  r->setBrush(QBrush(color));
+
+  r->moveBy(0, -rectHeight);
+
+  this->addToGroup(r);
+}
+
 
 void EventView::drawText()
 {

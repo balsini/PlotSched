@@ -23,6 +23,7 @@ public:
   void drawArrowDown();
   void drawArrowDownRed();
   void drawRect(qreal duration, QColor color);
+  void drawRectH(qreal duration, QColor color);
   void drawCircle();
 };
 
