@@ -78,18 +78,33 @@ void MainWindow::populate_toolbar()
 
   connect(ct, SIGNAL(openButtonClicked()), this, SLOT(on_actionOpen_Folder_triggered()));
   connect(ct, SIGNAL(refreshButtonClicked()), this, SLOT(on_actionRefresh_Folder_triggered()));
+  connect(ct, SIGNAL(zoomInClicked()), this, SLOT(on_actionZoomInTriggered()));
+  connect(ct, SIGNAL(zoomOutClicked()), this, SLOT(on_actionZoomOutTriggered()));
+  connect(ct, SIGNAL(zoomFitClicked()), this, SLOT(on_actionZoomFitTriggered()));
+}
 
+
+void MainWindow::on_actionZoomInTriggered()
+{
   /*
-  this->ui->mainToolBar->addSeparator();
+  qreal center = em.magnify(0, 100, 50);
+  updatePlot(center);
+  */
+}
 
+void MainWindow::on_actionZoomOutTriggered()
+{
+  /*
+  qreal center = em.magnify(0, 100, 200);
+  updatePlot(center);
+  */
+}
 
-  QToolButton * buttonZoomIn = new QToolButton(this);
-  buttonZoomIn->setIcon(QIcon::fromTheme("zoom-in"));
-  this->ui->mainToolBar->addWidget(buttonZoomIn);
-
-  QToolButton * buttonZoomOut = new QToolButton(this);
-  buttonZoomOut->setIcon(QIcon::fromTheme("zoom-out"));
-  this->ui->mainToolBar->addWidget(buttonZoomOut);
+void MainWindow::on_actionZoomFitTriggered()
+{
+  /*
+  qreal center = em.magnify(0, 100, 200);
+  updatePlot(center);
   */
 }
 

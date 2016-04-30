@@ -45,6 +45,10 @@ private slots:
   void on_actionOpen_Folder_triggered();
   void on_actionRefresh_Folder_triggered();
 
+  void on_actionZoomInTriggered();
+  void on_actionZoomOutTriggered();
+  void on_actionZoomFitTriggered();
+
   void on_actionTraces_Files_triggered();
 
 signals:
